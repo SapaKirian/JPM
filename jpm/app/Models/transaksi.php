@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaksi extends Model
 {
-    use HasFactory;
-
     protected $table = 'transaksi';
 
     protected $fillable = [
@@ -16,18 +13,15 @@ class Transaksi extends Model
         'total_harga',
         'metode_pembayaran',
         'status',
-        'tanggal_transaksi'
+        'tanggal_transaksi',
     ];
 
-    // relasi ke user
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\Models\User::class);
     }
-
-    // relasi ke detail transaksi
-    public function detailTransaksi()
+    public function motor()
     {
-        return $this->hasMany(DetailTransaksi::class);
+        return $this->belongsTo(\App\Models\Motor::class);
     }
 }
