@@ -12,22 +12,20 @@ return new class extends Migration {
     {
         Schema::create('detail_motor', function (Blueprint $table) {
             $table->id();
-          
-            $table->foreignId('motor_id')->constrained('motor')->onDelete('cascade');
 
-          
+            $table->unsignedBigInteger('motor_id');
+            $table->foreign('motor_id')
+                ->references('id')
+                ->on('motor')
+                ->onDelete('cascade');
+
             $table->text('mesin');
             $table->text('rangka');
             $table->text('dimensi');
             $table->text('kelistrikan');
-
-        
-            $table->text('daftar_varian')->comment('Contoh isi: Hybrid S, Hybrid');
-            $table->text('daftar_harga')->comment('Contoh isi: 18900000, 18200000');
-
-           
-            $table->text('daftar_warna')->nullable()->comment('Contoh isi: Dark Grey, Silver');
-
+            $table->text('daftar_varian');
+            $table->text('daftar_harga');
+            $table->text('daftar_warna')->nullable();
             $table->string('video_url')->nullable();
             $table->timestamps();
         });
@@ -38,6 +36,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('detail_motor'); 
+        Schema::dropIfExists('detail_motor');
     }
 };
