@@ -1,5 +1,7 @@
-*
 !.gitignore
-!Motor
-!ASETJPM
-!motor-varian
+!ASETJPM/
+!ASETJPM/**
+!Motor/
+!Motor/**
+!motor-varian/
+!motor-varian/**
